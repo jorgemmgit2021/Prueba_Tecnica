@@ -1,0 +1,83 @@
+<fieldset class="form-group table-bordered p-0" *ngIf="this._Usuario!=undefined">
+    <mat-card class="shipping-card">
+        <mat-card-header>
+            <mat-card-title>Consulta de asignaturas por usuario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <div class="row">
+            <div class="col">
+            <p class="col-md-6 p-0 table-bordered">
+                <mat-form-field appearance="fill" class="example-full-width" >
+                    <input matInput [(ngModel)]="_Usuario.Numero_Identificacion" placeholder="Numero de identificacion" required minlength="6" maxlength="8">
+                    <input matInput placeholder="Numero de Identificacion">
+                    <mat-hint>Numero de identificacion</mat-hint>
+                </mat-form-field>
+            </p>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <p class="col-md-6 p-0 table-bordered">
+                <mat-form-field appearance="legacy" class="example-full-width" >
+                    <input matInput [(ngModel)]="_Usuario.Nombre_Completo" placeholder="Nombre completo" required minlength="4" maxlength="150">
+                    <input matInput placeholder="Nombre completo">
+                    <mat-hint>Nombre completo</mat-hint>
+                </mat-form-field>
+            </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <p class="col-md-12 p-0 table-bordered">
+                <mat-form-field appearance="fill"class="example-full-width" >
+                <mat-label>Tipo de usuario</mat-label>
+                <mat-select [(ngModel)]="_Usuario.Tipo_Usuario" required name="tipo" placeholder="Tipo de usuario">
+                    <mat-option *ngFor="let t of tipo" [value]="t.Id">
+                    {{t.Descripcion}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </p>
+            </div>
+        </div>
+            <mat-card-actions>
+                <button (click)="consultarUsuario()" class="btn btn-info" type="button">Buscar</button>
+            </mat-card-actions>
+        <caption class=""><b>Consulta de asignaturas registradas</b></caption>
+        <table class="table table-striped table-bordered col-md-12">
+            <thead>
+                <tr>            
+                    <thead class="row">                        
+                        <tr>
+                            <td><b>Consecutivo asignatura</b></td>
+                            <td><b>Descripcion</b></td>
+                            <td><b>Créditos</b></td>
+                            <td><b>Docente</b></td>
+                            <td><b></b></td>
+                        </tr>
+                    </thead>
+                </tr>
+            </thead>
+            <tbody *ngIf="this._Asignaturas!=undefined">
+                <tr class="row" *ngFor="let d of this._Asignaturas" >
+                    <td><b>{{d.id_Asignatura}}</b></td>
+                    <td><b>{{d.descripcion}}</b></td>
+                    <td><b>{{d.creditos}}</b></td>
+                    <td><b>{{d.docente}}</b></td>
+                    <td>
+                        <button class="btn btn-warning" (click)="consultarEstudiantes(d.id_Asignatura)">Alumnos inscritos</button>
+                    </td> 
+                </tr><!-- -->
+            </tbody>
+        </table>
+        <mat-list *ngIf="this._Estudiantes!=undefined">
+            <mat-list-item *ngFor="let u of _Estudiantes">
+            <h4 matLine appereance="fill">Nombre completo: {{u.Nombre_Completo}} </h4>
+            <p matLine appereance="fill">
+                <span>Numero de identificacion: {{u.Numero_Identificacion}} </span>
+            </p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    </mat-card>
+</fieldset>

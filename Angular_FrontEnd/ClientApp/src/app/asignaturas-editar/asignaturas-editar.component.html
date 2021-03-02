@@ -1,0 +1,42 @@
+<div class="container align-items-center col-md-10">
+    <fieldset class="form-group table-bordered p-0" *ngIf="d!=undefined">
+        <legend>Registro de Asignaturas</legend>
+        Id_Asignatura
+        Descripcion
+        Creditos
+        Id_Docente
+        <p class="col-md-12 p-0 table-bordered">
+            <mat-form-field appearance="legacy" class="example-full-width" >
+                <input matInput placeholder="Input" [(ngModel)]="d.Id_Asignatura" class="col-md-8" placeholder="Consecutivo de Asignatura" disabled required minlength="1" maxlength="8">
+            </mat-form-field>
+        </p>
+        <p class="col-md-12 p-0 table-bordered">
+            <mat-form-field appearance="legacy" class="example-full-width" >
+                <input matInput [(ngModel)]="d.Descripcion" class="col-md-8" placeholder="Descripcion" required minlength="20" maxlength="150">
+                <mat-label>Descripcion</mat-label>
+                <input matInput placeholder="Descripcion">
+                <mat-hint>Descripcion</mat-hint>
+            </mat-form-field>
+        </p>
+        <p class="col-md-12 p-0 table-bordered">
+            <mat-form-field appearance="legacy" class="example-full-width" >
+                <input matInput [(ngModel)]="d.Creditos" class="col-md-8" placeholder="Creditos" required minlength="6" maxlength="8">
+                <mat-label>Creditos</mat-label>
+                <input matInput placeholder="Creditos">
+                <mat-hint>Creditos</mat-hint>
+            </mat-form-field>
+        </p>
+        <p class="col-md-12 p-0 table-bordered">
+            <mat-form-field appearance="legacy" class="example-full-width" >
+                <input matInput [(ngModel)]="d.Id_Docente" class="col-md-8" placeholder="Docente" required minlength="15" maxlength="150">
+                <mat-label>Docente</mat-label>
+                <input matInput placeholder="Docente">
+                <mat-hint>Docente</mat-hint>
+            </mat-form-field>
+        </p>
+        <div class="row align-items-start col-md-10">
+            <button (click)="Guardar()" class="btn btn-info">Guardar</button>
+            <a routerLink="/asignaturas" class="btn btn-info">Volver</a>            
+        </div>
+    </fieldset>
+</div>
