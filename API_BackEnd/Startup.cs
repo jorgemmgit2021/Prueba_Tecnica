@@ -84,6 +84,8 @@ namespace API_BackEnd{
             // Instance injection
             services.AddScoped<UsuariosRepository>();
             services.AddScoped<AsignaturasRepository>();
+            services.AddScoped<CiclosRepository>();
+            services.AddScoped<CalificacionesRepository>();
             // Per request injections
             services.AddScoped<ApiExceptionFilter>();
             services.AddControllers();

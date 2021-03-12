@@ -50,7 +50,7 @@ namespace API_BackEnd.Controllers{
 
         [HttpGet("GetById/{id}")]
         public async Task<List<Usuario>> GetBy(int id){
-            return await Context.Usuarios.Include(t => t.Asignaturas.Where(i => i.Id_Usuario == id)).OrderBy(d => d.Nombre_Completo).ToListAsync();
+            return await Context.Usuarios.Where(a=>a.Id_Usuario==id).Include(t => t.Asignaturas.Where(i => i.Id_Usuario == id)).OrderBy(d => d.Nombre_Completo).ToListAsync();
         }
 
         [HttpGet("{id}")]

@@ -16,13 +16,14 @@ export class UsuarioService {
   public getAll():Observable<Usuario[]>{  
     return this.httpClient.get<Usuario[]>(`${this.baseURL}`);
   }
-  public getBy(id:number):Observable<Usuario[]>{    
-    return this.httpClient.get<Usuario[]>(`${this.baseURL}/GetById/${id}`);
+  public async getBy(id:number):Promise<Usuario>{
+    return this.httpClient.get<Usuario>(`${this.baseURL}/GetById/${id}`).toPromise();
+    //.toPromise().then(result=>{_result = result;debugger});    
   }
   public Editar(id:number){
     return this.httpClient.get<Usuario>(`${this.baseURL}/${id}`);
   }
-  public create(data): Observable<any> {
+  public create(data): Observable<any>{
     return this.httpClient.post(`${this.baseURL}`, data);
   }
   public async Delete(id:number){

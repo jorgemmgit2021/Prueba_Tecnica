@@ -40,8 +40,6 @@ export class AsignaturasEditarComponent implements OnInit {
     else {
       this.d = this.initType();
     }
-    this.p$= this.listService.getBy(_id);
-    console.log(this.p$);
     console.log(this.l$);
   }
   public getAsignatura(id){

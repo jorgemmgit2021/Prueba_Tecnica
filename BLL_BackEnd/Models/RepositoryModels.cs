@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Text.Json.Serialization;
 
-namespace BLL_BackEnd.Models{
-    public class Usuario{
+namespace BLL_BackEnd.Models {
+    public class Usuario {
         [Key]
         [System.ComponentModel.DataAnnotations.Schema.Column("Id_Usuario")]
         [JsonPropertyName("Id_Usuario")]
@@ -30,9 +30,8 @@ namespace BLL_BackEnd.Models{
         [JsonPropertyName("Asignaturas")]
         [ForeignKey("Id_Usuario")]
         public List<Inscripcion_Asignatura> Asignaturas { get; set; }
-
     }
-    public class Asignatura{
+    public class Asignatura {
         [Key]
         [System.ComponentModel.DataAnnotations.Schema.Column("Id_Asignatura")]
         [JsonPropertyName("Id_Asignatura")]
@@ -51,7 +50,7 @@ namespace BLL_BackEnd.Models{
         [JsonPropertyName("Id_Usuario")]
         public int Id_Usuario { get; set; }
     }
-    public class Inscripcion_Asignatura{
+    public class Inscripcion_Asignatura {
         [Key]
         [System.ComponentModel.DataAnnotations.Schema.Column("Id_Asignatura")]
         [JsonPropertyName("Id_Asignatura")]
@@ -66,5 +65,42 @@ namespace BLL_BackEnd.Models{
         [System.ComponentModel.DataAnnotations.Schema.Column("Id_Usuario")]
         [ForeignKey("Id_Usuario")]
         public int Id_Usuario { get; set; }
+
+        [JsonPropertyName("Id_Ciclo")]
+        [System.ComponentModel.DataAnnotations.Schema.Column("Id_Ciclo")]
+        [ForeignKey("Id_Ciclo")]
+        public int Id_Ciclo { get; set; }
+    }
+    public class Ciclos {
+        [Key]
+        [System.ComponentModel.DataAnnotations.Schema.Column("Id_Ciclo")]
+        [JsonPropertyName("Id_Ciclo")]
+        public int Id_Ciclo { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column("Descripcion")]
+        [JsonPropertyName("Descripcion")]
+        public string Descripcion { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column("Estado")]
+        [JsonPropertyName("Estado")]
+        public bool Estado { get; set; }
+    }
+    public class Calificaciones {
+        [Key]
+        [System.ComponentModel.DataAnnotations.Schema.Column("Id_Calificacion")]
+        [JsonPropertyName("Id_Calificacion")]
+        public int Id_Calificacion { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column("Id_Asignatura")]
+        [ForeignKey("Id_Asignatura")]
+        [JsonPropertyName("Id_Asignatura")]
+        public int Id_Asignatura { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column("Nota")]        
+        [JsonPropertyName("Nota")]
+        public Decimal Nota { get; set; }
+        //, TypeName = "System.Data.SqlTypes.SqlDouble"
+        [System.ComponentModel.DataAnnotations.Schema.Column("Fecha_Calificacion")]
+        [JsonPropertyName("Fecha_Calificacion")]
+        public DateTime Fecha_Calificacion { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.Column("Estado")]
+        [JsonPropertyName("Estado")]
+        public bool Estado { get; set; }
     }
 }

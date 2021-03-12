@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-content>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <div class="alert alert-success form-inline">
+                    <a class="badge badge-info" href="/editarcalificacion/0">Calificaciones<h4 class="btn btn-info col-md-2">+</h4></a>   
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <br>
+        <table class="mat-elevation-z8 col-md-12">
+            <thead>
+                <tr>
+                    <thead class="row">
+                        <td class="col-md-2"><b>Consecutivo</b></td>
+                        <td class="col-md-2"><b>Asignatura</b></td>
+                        <td class="col-md-1"><b>Nota</b></td>
+                        <td class="col-md-2"><b>Fecha_Calificacion</b></td>
+                        <td class="col-md-1"><b>Estado</b></td>
+                        <td class="col-md-4">Opciones</td>
+                    </thead>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row" *ngFor="let d of f" >
+                    <td class="col-md-2">{{d.Id_Calificacion}}</td>
+                    <td class="col-md-2">{{d.Id_Asignatura}}</td>
+                    <td class="col-md-1">{{d.Nota}}</td>
+                    <td class="col-md-2">{{d.Fecha_Calificacion}}</td>
+                    <td class="col-md-1"><mat-checkbox [checked]="d.Estado"></mat-checkbox></td>
+                    <td class="col-md-4">
+                        <a class="btn btn-info btn-sm" routerLink="/editarcalificacion/{{d.Id_Calificacion}}">Editar</a>
+                        <button class="btn btn-warning btn-sm" (click)="Eliminar(d.Id_Calificacion)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+  </mat-card>

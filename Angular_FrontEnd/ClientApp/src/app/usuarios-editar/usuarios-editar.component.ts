@@ -42,7 +42,7 @@ export class UsuariosEditarComponent implements OnInit {
       return this.c;
     }
     initSub(): InscripcionAsignatura {
-      this.i = { Id_Asignatura:0, Id_Usuario:0, Id_Materia:0 };
+      this.i = { Id_Asignatura:0, Id_Usuario:0, Id_Materia:0, Id_Ciclo:0};
       return this.i;
     }
     constructor(private service:UsuarioService, private listService:AsignaturaService, private route:ActivatedRoute, 
@@ -61,7 +61,7 @@ export class UsuariosEditarComponent implements OnInit {
   end(x):void{
     if(this.c.Tipo_Usuario!=1){this.snackBar.open('El registro de Docentes no puede incluir asignaturas','Cerrar', new MatSnackBarConfig());return;}
     let _cont:InscripcionAsignatura[] =this.c.Asignaturas||[];
-    let _x:InscripcionAsignatura = { Id_Asignatura: this.i.Id_Asignatura, Id_Materia:Number(this.i.Id_Materia), Id_Usuario:Number(this.i.Id_Usuario)};    
+    let _x:InscripcionAsignatura = { Id_Asignatura: this.i.Id_Asignatura, Id_Materia:Number(this.i.Id_Materia), Id_Usuario:Number(this.i.Id_Usuario), Id_Ciclo :this.i.Id_Ciclo};    
     let u = this.c.Asignaturas.find(function(indx){ return indx.Id_Materia== _x.Id_Materia && indx.Id_Usuario==_x.Id_Usuario; });
     if(u==undefined){      
       _cont.unshift(_x)
@@ -82,7 +82,7 @@ export class UsuariosEditarComponent implements OnInit {
       });
     });
     console.log(this.a$);
-    console.log('this.d$');
+    console.log(this.k);
   }
   public getPacientes(id){
     this.service.Editar(id).subscribe((data:Usuario)=>{ if(this.c!=undefined) this.c = data; });
