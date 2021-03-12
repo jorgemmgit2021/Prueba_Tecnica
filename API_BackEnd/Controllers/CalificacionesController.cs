@@ -77,10 +77,8 @@ namespace API_BackEnd.Controllers
         public async Task<Calificaciones> SaveCalificaciones([FromBody] Calificaciones Calificaciones){
             if (!ModelState.IsValid)
                 throw new ApiException("Model binding failed.", 500);
-
             if (!Repository.Validate(Calificaciones))
                 throw new ApiException(Repository.ErrorMessage, 500, Repository.ValidationErrors);
-
             var registro = await Repository.SaveCalificaciones(Calificaciones);
             if (registro == null)
                 throw new ApiException(Repository.ErrorMessage, 500);
